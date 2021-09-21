@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample test page</title>
+	<style>
+		.t,td,.h,.E {
+			padding-left: 20px;
+			background-color:#e4d5fa;; 
+		}
+	</style>
+</head>
+<body>
+
+   <div class="contain">
+   	  <table class="table table-stripped">
+   	  	<thead>
+   	  		<tr>
+   	  			<th class="t">ID</th>
+   	  			<th class="t">UserID</th>
+   	  			<th class="h">Title</th>
+   	  			<th class="E">body</th>
+
+   	  		</tr>
+   	  	</thead>
+		<tbody id="data">
+			
+		</tbody>
+	</table>
+
+   </div>
+
+   
+   <script>
+   	fetch("smaplejson.json").then(
+         res=>{
+         	res.json().then(
+                 data=>{
+                 	console.log(data);
+                 	if(data.length>0){
+                 		var temp="";
+                 		//--start for loop-
+
+                 		data.forEach((u)=>{
+                          temp+="<tr>";
+                          temp+="<td>"+u.id+" "+"</td>";
+                          temp+="<td>"+u.userId+"</td>";
+                          temp+="<td>"+u.title+"</td>";
+                          temp+="<td>"+u.body+"</td></tr>";
+
+                          //-->close for loop
+
+                          document.getElementById("data").innerHTML = temp;
+
+                 		})
+                 	}
+                 }
+         		
+         	)
+         }
+
+   	);
+   </script>
+</body>
+</html>
